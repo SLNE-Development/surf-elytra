@@ -1,7 +1,7 @@
 package dev.slne.surf.elytra.utils
 
 import dev.slne.surf.elytra.altar.AltarManager.altarWorld
-import dev.slne.surf.elytra.recipes.items.brokenCelestialGliderItemStack
+import dev.slne.surf.elytra.recipes.items.brokenPigeonWingsItemStack
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.SculkShrieker
@@ -14,8 +14,18 @@ enum class AltarItemFrame(
 ) {
 
     MIDDLE(
-        Location(altarWorld, 84.0, 64.0, 30.0),
-        brokenCelestialGliderItemStack
+        Location(altarWorld, -23.0, 105.0, 15.0),
+        brokenPigeonWingsItemStack
+    ) {
+        override fun animate(currentFrame: Int): Boolean {
+            itemFrame.setItem(null)
+            return true
+        }
+    },
+
+    NORTH(
+        Location(altarWorld, -23.0, 106.0, 11.0),
+        ItemStack(Material.HEAVY_CORE)
     ) {
         override fun animate(currentFrame: Int): Boolean {
             itemFrame.setItem(null)
@@ -24,7 +34,7 @@ enum class AltarItemFrame(
     },
 
     NORTH_EAST(
-        Location(altarWorld, 87.0, 64.0, 27.0),
+        Location(altarWorld, -20.0, 105.0, 12.0),
         ItemStack(Material.DRAGON_BREATH)
     ) {
         override fun animate(currentFrame: Int): Boolean {
@@ -34,7 +44,7 @@ enum class AltarItemFrame(
     },
 
     EAST(
-        Location(altarWorld, 88.0, 65.0, 30.0),
+        Location(altarWorld, -19.0, 106.0, 15.0),
         ItemStack(Material.NETHER_STAR)
     ) {
         override fun animate(currentFrame: Int): Boolean {
@@ -44,7 +54,7 @@ enum class AltarItemFrame(
     },
 
     SOUTH_EAST(
-        Location(altarWorld, 87.0, 64.0, 33.0),
+        Location(altarWorld, -20.0, 105.0, 18.0),
         ItemStack(Material.DRAGON_BREATH)
     ) {
         override fun animate(currentFrame: Int): Boolean {
@@ -53,18 +63,8 @@ enum class AltarItemFrame(
         }
     },
 
-    SOUTH(
-        Location(altarWorld, 84.0, 65.0, 34.0),
-        ItemStack(Material.HEAVY_CORE)
-    ) {
-        override fun animate(currentFrame: Int): Boolean {
-            itemFrame.setItem(null)
-            return true
-        }
-    },
-
     SOUTH_WEST(
-        Location(altarWorld, 81.0, 64.0, 33.0),
+        Location(altarWorld, -26.0, 105.0, 18.0),
         ItemStack(Material.DRAGON_BREATH)
     ) {
         override fun animate(currentFrame: Int): Boolean {
@@ -74,7 +74,7 @@ enum class AltarItemFrame(
     },
 
     WEST(
-        Location(altarWorld, 80.0, 65.0, 30.0),
+        Location(altarWorld, -27.0, 106.0, 15.0),
         ItemStack(Material.NETHER_STAR)
     ) {
         override fun animate(currentFrame: Int): Boolean {
@@ -84,7 +84,7 @@ enum class AltarItemFrame(
     },
 
     NORTH_WEST(
-        Location(altarWorld, 81.0, 64.0, 27.0),
+        Location(altarWorld, -26.0, 105.0, 12.0),
         ItemStack(Material.DRAGON_BREATH)
     ) {
         override fun animate(currentFrame: Int): Boolean {

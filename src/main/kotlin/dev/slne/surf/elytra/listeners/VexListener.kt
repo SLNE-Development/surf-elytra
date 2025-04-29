@@ -1,6 +1,11 @@
 package dev.slne.surf.elytra.listeners
 
+import com.github.shynixn.mccoroutine.folia.entityDispatcher
+import com.github.shynixn.mccoroutine.folia.launch
+import com.github.shynixn.mccoroutine.folia.ticks
+import dev.slne.surf.elytra.plugin
 import dev.slne.surf.surfapi.core.api.messages.adventure.playSound
+import dev.slne.surf.surfapi.core.api.util.mutableObjectListOf
 import kotlinx.coroutines.delay
 import org.bukkit.GameMode
 import org.bukkit.Material
@@ -13,8 +18,12 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
+import java.util.*
+import kotlin.time.Duration.Companion.seconds
 
 object VexListener : Listener {
+
+    private val conversions = mutableObjectListOf<UUID>()
 
     @EventHandler
     suspend fun onPlayerInteractAtEntity(event: PlayerInteractAtEntityEvent) {
@@ -30,6 +39,10 @@ object VexListener : Listener {
             return
         }
 
+        if (conversions.contains(allay.uniqueId)) {
+            return
+        }
+
         if (event.player.gameMode == GameMode.SURVIVAL || event.player.gameMode == GameMode.ADVENTURE) {
             if (clickedWithItem.amount > 1) {
                 clickedWithItem.amount--
@@ -38,28 +51,52 @@ object VexListener : Listener {
             }
         }
 
+        conversions.add(allay.uniqueId)
+
         allay.setAI(false)
         allay.isGlowing = true
 
         allay.addPotionEffect(PotionEffect(PotionEffectType.LEVITATION, 5 * 20, 3, false, false))
-        allay.world.getNearbyPlayers(allay.location, 30.0).forEach { player ->
-            player.playSound {
-                type(Sound.ENTITY_ZOMBIE_VILLAGER_CURE)
-                volume(.5f)
+
+        val delaySeconds = 5
+        val delayBetweenTicks = 5
+        val repeat = delaySeconds * 20 / delayBetweenTicks
+        
+        plugin.launch(plugin.entityDispatcher(allay)) {
+            repeat(repeat) {
+                playEatSound(allay)
+                delay(delayBetweenTicks.ticks)
+                allay.world.spawnParticle(Particle.ANGRY_VILLAGER, allay.location, 1)
             }
         }
 
-        delay(5 * 1000)
+        delay(delaySeconds.seconds)
 
         val location = allay.location.clone()
         allay.remove()
+        conversions.remove(allay.uniqueId)
 
         location.world.spawnEntity(location, EntityType.VEX)
-        location.world.spawnParticle(Particle.ANGRY_VILLAGER, location, 1)
 
         location.world.getNearbyPlayers(location, 30.0).forEach { player ->
             player.playSound {
+                type(Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED)
+                volume(.5f)
+            }
+
+            delay(1.seconds)
+
+            player.playSound {
                 type(Sound.ENTITY_VEX_CHARGE)
+                volume(.5f)
+            }
+        }
+    }
+
+    private fun playEatSound(allay: Allay) {
+        allay.world.getNearbyPlayers(allay.location, 30.0).forEach { player ->
+            player.playSound {
+                type(Sound.ENTITY_GENERIC_EAT)
                 volume(.5f)
             }
         }

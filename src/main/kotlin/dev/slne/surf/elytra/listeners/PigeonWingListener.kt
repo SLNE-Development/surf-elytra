@@ -1,6 +1,6 @@
 package dev.slne.surf.elytra.listeners
 
-import dev.slne.surf.elytra.recipes.items.brokenCelestialGliderKey
+import dev.slne.surf.elytra.recipes.items.brokenPigeonWingsKey
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.event.player.PlayerItemMendEvent
 import org.bukkit.persistence.PersistentDataType
 
-object CelestialGliderListener : Listener {
+object PigeonWingListener : Listener {
 
     @EventHandler
     fun onPlayerItemMend(event: PlayerItemMendEvent) {
@@ -22,7 +22,7 @@ object CelestialGliderListener : Listener {
         }
 
         if (!item.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             )
         ) {
@@ -44,7 +44,7 @@ object CelestialGliderListener : Listener {
             }
 
             if (!item.persistentDataContainer.has(
-                    brokenCelestialGliderKey,
+                    brokenPigeonWingsKey,
                     PersistentDataType.BOOLEAN
                 )
             ) {
@@ -69,10 +69,10 @@ object CelestialGliderListener : Listener {
         }
 
         if (!(firstItem.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             ) || secondItem.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             ))
         ) {
@@ -82,7 +82,7 @@ object CelestialGliderListener : Listener {
         event.result = null
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler
     fun onPrepareGrindstone(event: PrepareGrindstoneEvent) {
         val firstItem = event.inventory.upperItem
         val secondItem = event.inventory.lowerItem
@@ -96,10 +96,10 @@ object CelestialGliderListener : Listener {
         }
 
         if (!(firstItem.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             ) || secondItem.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             ))
         ) {
@@ -109,7 +109,7 @@ object CelestialGliderListener : Listener {
         event.result = null
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler
     fun onPrepareItemEnchant(event: PrepareItemEnchantEvent) {
         val item = event.item
 
@@ -118,7 +118,7 @@ object CelestialGliderListener : Listener {
         }
 
         if (!item.persistentDataContainer.has(
-                brokenCelestialGliderKey,
+                brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
             )
         ) {
@@ -127,5 +127,5 @@ object CelestialGliderListener : Listener {
 
         event.isCancelled = true
     }
-    
+
 }

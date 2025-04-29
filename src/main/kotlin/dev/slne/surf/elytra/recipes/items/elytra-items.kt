@@ -10,13 +10,27 @@ import io.papermc.paper.registry.RegistryKey
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.Damageable
 import org.bukkit.persistence.PersistentDataType
 import dev.slne.surf.surfapi.bukkit.api.util.key as namespacedKey
 
+enum class ElytraItems(val itemStack: ItemStack) {
+    ULTIMATE_WING_CORE(ultimateWingCoreItemStack),
+    ASCENDED_WING_CORE(ascendedWingCoreItemStack),
+    SOUL_THREAD_WEAVE(soulThreadWeaveItemStack),
+    COMPRESSED_SOUL_THREAD_WEAVE(compressedSoulThreadWeaveItemStack),
+    DOUBLE_COMPRESSED_SOUL_THREAD_WEAVE(doubleCompressedSoulThreadWeaveItemStack),
+    GLACIAL_BINDING(glacialBindingItemStack),
+    COMPRESSED_GLACIAL_BINDING(compressedGlacialBindingItemStack),
+    DOUBLE_COMPRESSED_GLACIAL_BINDING(doubleCompressedGlacialBindingItemStack),
+    BROKEN_PIGEON_WINGS(brokenPigeonWingsItemStack),
+    PIGEON_WINGS(pigeonWingsItemStack);
+}
+
 val ultimateWingCoreKey = namespacedKey("ultimate_wing_core")
 val ascendedWingCoreKey = namespacedKey("ascended_wing_core")
-val brokenCelestialGliderKey = namespacedKey("broken_celestial_glider")
+val brokenPigeonWingsKey = namespacedKey("broken_celestial_glider")
 val snowmanHeartKey = namespacedKey("snowman_heart")
 
 val ultimateWingCoreItemStack = ItemStack(Material.WIND_CHARGE) {
@@ -148,17 +162,26 @@ val doubleCompressedGlacialBindingItemStack = ItemStack(Material.BLUE_ICE) {
     }
 }
 
-val brokenCelestialGliderItemStack = ItemStack(Material.ELYTRA) {
+val brokenPigeonWingsItemStack = ItemStack(Material.ELYTRA) {
     displayName {
-        primary("Broken Celestial Glider")
+        primary("Broken Pigeon Wings")
     }
     buildLore {
         line {
-            spacer("Ein zerbrochener Himmelsgleiter")
+            spacer("Die Flügel einer Taube")
+        }
+        line {
+            spacer("Doch irgendwas stimmt nicht")
         }
         line { }
         line {
-            spacer("Ich sollte herausfinden, wie ich ihn reparieren kann")
+            spacer("Ich sollte herausfinden,")
+        }
+        line {
+            spacer("was mit diesen Flügeln passiert ist")
+        }
+        line {
+            spacer("und wie ich sie reparieren kann")
         }
     }
 
@@ -170,13 +193,13 @@ val brokenCelestialGliderItemStack = ItemStack(Material.ELYTRA) {
     addItemFlags(ItemFlag.HIDE_ENCHANTS)
 
     editPersistentDataContainer { container ->
-        container.set(brokenCelestialGliderKey, PersistentDataType.BOOLEAN, true)
+        container.set(brokenPigeonWingsKey, PersistentDataType.BOOLEAN, true)
     }
 }
 
-val celestialGliderItemStack = ItemStack(Material.ELYTRA) {
+val pigeonWingsItemStack = ItemStack(Material.ELYTRA) {
     displayName {
-        primary("Celestial Glider")
+        primary("Pigeon Wings")
     }
     buildLore {
         line {

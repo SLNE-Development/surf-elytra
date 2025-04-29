@@ -18,7 +18,7 @@ object ListenerManager : Listener {
         pluginManager.registerEvents(this, plugin)
         pluginManager.registerEvents(MobKillListener, plugin)
         pluginManager.registerEvents(HoneyListener, plugin)
-        pluginManager.registerEvents(CelestialGliderListener, plugin)
+        pluginManager.registerEvents(PigeonWingListener, plugin)
         pluginManager.registerEvents(WingCoreListener, plugin)
         pluginManager.registerEvents(SnowmanHeartListener, plugin)
 

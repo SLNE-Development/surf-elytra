@@ -2,7 +2,7 @@ package dev.slne.surf.elytra.altar
 
 import com.github.shynixn.mccoroutine.folia.regionDispatcher
 import dev.slne.surf.elytra.plugin
-import dev.slne.surf.elytra.recipes.items.celestialGliderItemStack
+import dev.slne.surf.elytra.recipes.items.pigeonWingsItemStack
 import dev.slne.surf.elytra.utils.AltarItemFrame
 import dev.slne.surf.surfapi.core.api.messages.adventure.playSound
 import kotlinx.coroutines.withContext
@@ -20,7 +20,7 @@ class MainAltarAnimator(lastFillingPlayer: Player) : AltarAnimator(lastFillingPl
         withContext(plugin.regionDispatcher(middleLocation)) {
             middleLocation.world.dropItem(
                 middleLocation.clone().add(0.0, 1.0, 0.0),
-                celestialGliderItemStack
+                pigeonWingsItemStack
             ) { item ->
                 item.owner = lastFillingPlayer.uniqueId
                 item.setCanMobPickup(false)

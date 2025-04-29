@@ -112,8 +112,8 @@ val doubleCompressedSoulThreadRecipe =
         setIngredient('C', compressedSoulThreadWeaveItemStack)
     }
 
-val brokenCelestialGliderRecipe =
-    ShapedRecipe(key("broken_celestial_glider"), brokenCelestialGliderItemStack).apply {
+val brokenPigeonWingsRecipe =
+    ShapedRecipe(key("broken_pigeon_wings"), brokenPigeonWingsItemStack).apply {
         shape(
             "VBV",
             "GWG",
@@ -131,7 +131,7 @@ val brokenCelestialGliderRecipe =
 fun registerRecipes() {
     server.addRecipe(ultimateWingCoreRecipe)
     server.addRecipe(ascendedWingCoreRecipe)
-    server.addRecipe(brokenCelestialGliderRecipe)
+    server.addRecipe(brokenPigeonWingsRecipe)
 
     server.addRecipe(glacialBindingRecipe)
     server.addRecipe(compressedGlacialBindingRecipe)

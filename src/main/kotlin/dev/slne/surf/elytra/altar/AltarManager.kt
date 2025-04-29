@@ -23,9 +23,9 @@ object AltarManager {
     var altarAnimator: AltarAnimator? = null
 
     val altarWorld: World = Bukkit.getWorlds().first()
-    private val altarNorthPosition = Location(altarWorld, 84.0, 64.0, 26.0)
+    private val altarSouthPosition = Location(altarWorld, -23.0, 105.0, 19.0)
 
-    private val altarBrewingStandBlock get() = altarWorld.getBlockAt(altarNorthPosition)
+    private val altarBrewingStandBlock get() = altarWorld.getBlockAt(altarSouthPosition)
     private val altarBrewingStand get() = altarBrewingStandBlock.state as BrewingStand
 
     fun initAltar() {
@@ -42,7 +42,7 @@ object AltarManager {
             return
         }
 
-        val levelState = withContext(plugin.regionDispatcher(altarNorthPosition)) {
+        val levelState = withContext(plugin.regionDispatcher(altarSouthPosition)) {
             val hasEnoughLevels = BrewingStandClickListener.getAltarLevels(
                 lastFillingPlayer,
                 altarBrewingStand
@@ -73,7 +73,7 @@ object AltarManager {
     }
 
     private fun initBrewingStand() {
-        val altarNorthLocation = altarNorthPosition.toLocation(altarWorld)
+        val altarNorthLocation = altarSouthPosition.toLocation(altarWorld)
 
         if (altarNorthLocation.block.type !== Material.BREWING_STAND) {
             altarNorthLocation.block.type = Material.BREWING_STAND
