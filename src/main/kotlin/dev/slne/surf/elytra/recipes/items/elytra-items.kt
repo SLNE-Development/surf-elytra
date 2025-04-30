@@ -33,6 +33,21 @@ val ascendedWingCoreKey = namespacedKey("ascended_wing_core")
 val brokenPigeonWingsKey = namespacedKey("broken_celestial_glider")
 val snowmanHeartKey = namespacedKey("snowman_heart")
 
+val allayFoodItemStack = ItemStack(Material.DIAMOND) {
+    displayName {
+        primary("Allay Food")
+    }
+    buildLore {
+        line {
+            spacer("Ein Snack für Allays")
+        }
+        line { }
+        line {
+            spacer("Sie werden es lieben!")
+        }
+    }
+}
+
 val ultimateWingCoreItemStack = ItemStack(Material.WIND_CHARGE) {
     displayName {
         primary("Ultimate Wing Core")

@@ -1,9 +1,6 @@
 package dev.slne.surf.elytra.listeners
 
-import com.github.shynixn.mccoroutine.folia.entityDispatcher
-import com.github.shynixn.mccoroutine.folia.launch
 import com.github.shynixn.mccoroutine.folia.ticks
-import dev.slne.surf.elytra.plugin
 import dev.slne.surf.surfapi.core.api.messages.adventure.playSound
 import dev.slne.surf.surfapi.core.api.util.mutableObjectListOf
 import kotlinx.coroutines.delay
@@ -61,17 +58,13 @@ object VexListener : Listener {
         val delaySeconds = 5
         val delayBetweenTicks = 5
         val repeat = delaySeconds * 20 / delayBetweenTicks
-        
-        plugin.launch(plugin.entityDispatcher(allay)) {
-            repeat(repeat) {
-                playEatSound(allay)
-                delay(delayBetweenTicks.ticks)
-                allay.world.spawnParticle(Particle.ANGRY_VILLAGER, allay.location, 1)
-            }
+
+        repeat(repeat) {
+            playEatSound(allay)
+            delay(delayBetweenTicks.ticks)
+            allay.world.spawnParticle(Particle.ANGRY_VILLAGER, allay.location, 1)
         }
-
-        delay(delaySeconds.seconds)
-
+        
         val location = allay.location.clone()
         allay.remove()
         conversions.remove(allay.uniqueId)

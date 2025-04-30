@@ -21,6 +21,7 @@ object ListenerManager : Listener {
         pluginManager.registerEvents(PigeonWingListener, plugin)
         pluginManager.registerEvents(WingCoreListener, plugin)
         pluginManager.registerEvents(SnowmanHeartListener, plugin)
+        pluginManager.registerEvents(AllayListener, plugin)
 
         pluginManager.registerSuspendingEvents(VexListener, plugin, eventDispatcher)
     }

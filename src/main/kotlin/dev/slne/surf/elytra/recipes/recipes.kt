@@ -8,8 +8,20 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
 
+val allayFoodRecipe = ShapedRecipe(key("allay_food"), allayFoodItemStack).apply {
+    shape(
+        "CDC",
+        "DAD",
+        "CDC"
+    )
+
+    setIngredient('C', ItemStack(Material.POPPED_CHORUS_FRUIT))
+    setIngredient('D', ItemStack(Material.DIAMOND_BLOCK))
+    setIngredient('A', ItemStack(Material.AMETHYST_BLOCK))
+}
+
 val ultimateWingCoreRecipe =
-    ShapedRecipe(key("ultimate_wing_core"), ultimateWingCoreItemStack).apply {
+    ShapedRecipe(ultimateWingCoreKey, ultimateWingCoreItemStack).apply {
         shape(
             "PVP",
             "EGE",
@@ -25,7 +37,7 @@ val ultimateWingCoreRecipe =
     }
 
 val ascendedWingCoreRecipe =
-    ShapedRecipe(key("ascended_wing_core"), ascendedWingCoreItemStack).apply {
+    ShapedRecipe(ascendedWingCoreKey, ascendedWingCoreItemStack).apply {
         shape(
             " S ",
             "SUS",
@@ -113,7 +125,7 @@ val doubleCompressedSoulThreadRecipe =
     }
 
 val brokenPigeonWingsRecipe =
-    ShapedRecipe(key("broken_pigeon_wings"), brokenPigeonWingsItemStack).apply {
+    ShapedRecipe(brokenPigeonWingsKey, brokenPigeonWingsItemStack).apply {
         shape(
             "VBV",
             "GWG",
@@ -140,6 +152,8 @@ fun registerRecipes() {
     server.addRecipe(soulThreadWeaveRecipe)
     server.addRecipe(compressedSoulThreadRecipe)
     server.addRecipe(doubleCompressedSoulThreadRecipe)
+
+    server.addRecipe(allayFoodRecipe)
 }
 
 fun discoverRecipes(player: Player) {
@@ -154,4 +168,6 @@ fun discoverRecipes(player: Player) {
     player.discoverRecipe(key("soul_thread_weave"))
     player.discoverRecipe(key("compressed_soul_thread_weave"))
     player.discoverRecipe(key("double_compressed_soul_thread_weave"))
+
+    player.discoverRecipe(key("allay_food"))
 }
