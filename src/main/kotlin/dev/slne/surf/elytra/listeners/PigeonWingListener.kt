@@ -91,10 +91,6 @@ object PigeonWingListener : Listener {
             return
         }
 
-        if (firstItem.type != Material.ELYTRA && secondItem.type != Material.ELYTRA) {
-            return
-        }
-
         if (!(firstItem.persistentDataContainer.has(
                 brokenPigeonWingsKey,
                 PersistentDataType.BOOLEAN
