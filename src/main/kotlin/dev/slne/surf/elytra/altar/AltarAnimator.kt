@@ -32,10 +32,14 @@ abstract class AltarAnimator(protected val lastFillingPlayer: Player) {
         }
     }
 
+    fun stopAnimation() {
+        isAnimating = false
+    }
+
     private suspend fun animate() {
         coroutineScope {
             val allAnimationsDone = AltarItemFrame.entries.map { itemFrame ->
-                async {
+                async(plugin.entityDispatcher(itemFrame.itemFrame)) {
                     itemFrame.animate(currentFrame)
                 }
             }.all { it.await() }

@@ -109,7 +109,7 @@ enum class AltarItemFrame(
 
     fun init() {
         itemFrame = findOrSummon()
-        itemFrame.isVisible = false
+        itemFrame.isVisible = true
     }
 
     fun checkState() = !itemFrame.item.type.isAir

@@ -1,5 +1,6 @@
 package dev.slne.surf.elytra.recipes.items
 
+import dev.slne.surf.elytra.recipes.lore
 import dev.slne.surf.surfapi.bukkit.api.builder.ItemStack
 import dev.slne.surf.surfapi.bukkit.api.builder.buildLore
 import dev.slne.surf.surfapi.bukkit.api.builder.displayName
@@ -16,6 +17,7 @@ import org.bukkit.persistence.PersistentDataType
 import dev.slne.surf.surfapi.bukkit.api.util.key as namespacedKey
 
 enum class ElytraItems(val itemStack: ItemStack) {
+    ALLAY_FOOD(allayFoodItemStack),
     ULTIMATE_WING_CORE(ultimateWingCoreItemStack),
     ASCENDED_WING_CORE(ascendedWingCoreItemStack),
     SOUL_THREAD_WEAVE(soulThreadWeaveItemStack),
@@ -34,194 +36,140 @@ val brokenPigeonWingsKey = namespacedKey("broken_celestial_glider")
 val snowmanHeartKey = namespacedKey("snowman_heart")
 
 val allayFoodItemStack = ItemStack(Material.DIAMOND) {
-    displayName {
-        primary("Allay Food")
-    }
+    displayName { primary("Allay-Köder – Anlockungsmittel") }
     buildLore {
-        line {
-            spacer("Ein Snack für Allays")
-        }
-        line { }
-        line {
-            spacer("Sie werden es lieben!")
-        }
+        lore(
+            "Ein speziell entwickeltes Lockmittel für Allays.",
+            "Die T.A.U.B.E nutzt Allays zur unauffälligen",
+            "Sammlung von Gegenständen und Daten.",
+            "",
+            "Enthält feinste Diamantpartikel, die Allays",
+            "magnetisch anziehen und dauerhaft binden.",
+            "",
+            "Warnung:",
+            "Anhaltender Einsatz könnte Allays aggressiv machen",
+            "oder unkontrollierte Sammelwut auslösen.",
+            "",
+            "Nur geschultes Personal darf dieses Mittel einsetzen.",
+            "",
+            "\"Die Kunst der Täuschung ist unser bester Verbündeter.\"",
+            "– T.A.U.B.E-Handbuch, Abschnitt 3.2"
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val ultimateWingCoreItemStack = ItemStack(Material.WIND_CHARGE) {
-    displayName {
-        primary("Ultimate Wing Core")
-    }
+    displayName { primary("Ultimativer Flügelschaltkern – Kernsystem") }
     buildLore {
-        line {
-            spacer("Zusammengesetzt aus der Essenz seltener Kreaturen")
-        }
-        line { }
-        line {
-            spacer("Wer diese Essenz in sich trägt,")
-        }
-        line {
-            spacer("kann die ultimative Kraft der Flügel entfesseln")
-        }
+        lore(
+            "Das Herzstück der T.A.U.B.E., verantwortlich für alle",
+            "internen Operationen und Steuerungen.",
+            "Jede Bewegung, jede Entscheidung beginnt hier."
+        ).forEach { l -> line { spacer(l) } }
     }
-    editPersistentDataContainer { container ->
-        container.set(ultimateWingCoreKey, PersistentDataType.BOOLEAN, true)
-    }
+    editPersistentDataContainer { it.set(ultimateWingCoreKey, PersistentDataType.BOOLEAN, true) }
 }
 
 val ascendedWingCoreItemStack = ItemStack(Material.WIND_CHARGE) {
-    displayName {
-        primary("Ascended Wing Core")
-    }
+    displayName { primary("Erhabener Flügelschaltkern – Erweiterte KI") }
     buildLore {
-        line {
-            spacer("Ein mit purer Dimensionskraft")
-        }
-        line {
-            spacer("durchtränkter Kern")
-        }
-        line { }
-        line {
-            spacer("Nur jene, die das End bezwungen haben,")
-        }
-        line {
-            spacer("können seinen Ruf hören")
-        }
+        lore(
+            "Eine verbesserte Version des ultimativen Kerns mit künstlicher Intelligenz.",
+            "Lässt die T.A.U.B.E autonom Entscheidungen treffen",
+            "und komplexe Operationen eigenständig durchführen."
+        ).forEach { l -> line { spacer(l) } }
     }
-    editPersistentDataContainer { container ->
-        container.set(ascendedWingCoreKey, PersistentDataType.BOOLEAN, true)
-    }
+    editPersistentDataContainer { it.set(ascendedWingCoreKey, PersistentDataType.BOOLEAN, true) }
 }
 
 val soulThreadWeaveItemStack = ItemStack(Material.COBWEB) {
-    displayName {
-        primary("Soul Thread Weave")
-    }
+    displayName { primary("Seelenfaden-Geflecht – Kommunikation") }
     buildLore {
-        line {
-            spacer("Ein Gewebe aus Seelenfäden,")
-        }
-        line {
-            spacer("das die Dimensionen durchdringt")
-        }
+        lore(
+            "Ein fein gewebtes Netz aus Seelenfäden, das als",
+            "Kommunikationsmedium dient und eine schnelle",
+            "und sichere Datenübertragung gewährleistet."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val compressedSoulThreadWeaveItemStack = ItemStack(Material.COBWEB) {
-    displayName {
-        primary("Compressed Soul Thread Weave")
-    }
+    displayName { primary("Komprimiertes Seelenfaden-Geflecht – Hochleistungs-Kommunikation") }
     buildLore {
-        line {
-            spacer("Ein komprimierter Faden, der die Seelen")
-        }
-        line {
-            spacer("der Dimensionen in sich trägt")
-        }
+        lore(
+            "Ein verbessertes Seelenfaden-Geflecht, das höhere Datenvolumen",
+            "und stabilere Verbindungen selbst über große Entfernungen ermöglicht.",
+            "Optimal für umfangreiche Überwachungseinsätze."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val doubleCompressedSoulThreadWeaveItemStack = ItemStack(Material.COBWEB) {
-    displayName {
-        primary("Double Compressed Soul Thread Weave")
-    }
+    displayName { primary("Doppelt Komprimiertes Seelenfaden-Geflecht – Absolute Kommunikationssicherheit") }
     buildLore {
-        line {
-            spacer("Ein doppelt komprimierter Faden, der die Seelen")
-        }
-        line {
-            spacer("der Dimensionen in sich trägt")
-        }
+        lore(
+            "Die fortschrittlichste Form der Kommunikationsnetze.",
+            "Sicher gegen jede Form von Abhörung und ideal für",
+            "streng geheime Operationen geeignet."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val glacialBindingItemStack = ItemStack(Material.BLUE_ICE) {
-    displayName {
-        primary("Glacial Binding")
-    }
+    displayName { primary("Gletscherbindung – Grundkühlung") }
     buildLore {
-        line {
-            spacer("Ein gefrorenes Band, das die Kälte")
-        }
-        line {
-            spacer("der Dimensionen in sich trägt")
-        }
+        lore(
+            "Ein Kühlsystem, das die interne Elektronik der T.A.U.B.E vor Überhitzung schützt.",
+            "Ermöglicht einen stabilen Betrieb auch unter anspruchsvollen Bedingungen."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val compressedGlacialBindingItemStack = ItemStack(Material.BLUE_ICE) {
-    displayName {
-        primary("Compressed Glacial Binding")
-    }
+    displayName { primary("Komprimierte Gletscherbindung – Erweiterte Kühlung") }
     buildLore {
-        line {
-            spacer("Ein komprimiertes Band, das die Kälte")
-        }
-        line {
-            spacer("der Dimensionen in sich trägt")
-        }
+        lore(
+            "Ein verbessertes Kühlsystem, das selbst bei extremen Einsätzen",
+            "für optimale Betriebstemperaturen sorgt."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val doubleCompressedGlacialBindingItemStack = ItemStack(Material.BLUE_ICE) {
-    displayName {
-        primary("Double Compressed Glacial Binding")
-    }
+    displayName { primary("Doppelt Komprimierte Gletscherbindung – Hochleistungs-Kühlsystem") }
     buildLore {
-        line {
-            spacer("Ein doppelt komprimiertes Band, das die Kälte")
-        }
-        line {
-            spacer("der Dimensionen in sich trägt")
-        }
+        lore(
+            "Ein Kühlsystem der Spitzenklasse, das selbst größte Wärmeentwicklung",
+            "bei Hochleistungseinsätzen vollständig neutralisiert."
+        ).forEach { l -> line { spacer(l) } }
     }
 }
 
 val brokenPigeonWingsItemStack = ItemStack(Material.ELYTRA) {
-    displayName {
-        primary("Broken Pigeon Wings")
-    }
+    displayName { primary("Defekte Taubenflügel – Rekonstruktionsbasis") }
     buildLore {
-        line {
-            spacer("Die Flügel einer Taube")
-        }
-        line {
-            spacer("Doch irgendwas stimmt nicht")
-        }
-        line { }
-        line {
-            spacer("Ich sollte herausfinden,")
-        }
-        line {
-            spacer("was mit diesen Flügeln passiert ist")
-        }
-        line {
-            spacer("und wie ich sie reparieren kann")
-        }
+        lore(
+            "Beschädigte Flügel einer ausgefallenen T.A.U.B.E.",
+            "Dienen als Basis für die Rekonstruktion und Reparatur",
+            "des endgültigen Fluggeräts."
+        ).forEach { l -> line { spacer(l) } }
     }
-
-    meta<Damageable> {
-        damage = Int.MAX_VALUE
-    }
-
+    meta<Damageable> { damage = Int.MAX_VALUE }
     addUnsafeEnchantment(Enchantment.DENSITY, 1)
     addItemFlags(ItemFlag.HIDE_ENCHANTS)
-
-    editPersistentDataContainer { container ->
-        container.set(brokenPigeonWingsKey, PersistentDataType.BOOLEAN, true)
-    }
+    editPersistentDataContainer { it.set(brokenPigeonWingsKey, PersistentDataType.BOOLEAN, true) }
 }
 
 val pigeonWingsItemStack = ItemStack(Material.ELYTRA) {
-    displayName {
-        primary("Pigeon Wings")
-    }
+    displayName { primary("Taubenflügel") }
     buildLore {
-        line {
-            spacer("TODO")
-        }
+        lore(
+            "Die finalen, einsatzbereiten Flügel der T.A.U.B.E",
+            "Geräuschlos, zuverlässig und für jede Mission geeignet.",
+            "Mit diesen Flügeln ist die T.A.U.B.E vollständig operativ und bereit",
+            "für ihren Einsatz am Himmel über den Städten."
+        ).forEach { l -> line { spacer(l) } }
     }
-
     RegistryAccess.registryAccess().getRegistry(RegistryKey.ENCHANTMENT)
         .get(key("minecraft", "soulbound"))
         ?.let { addUnsafeEnchantment(it, 1) }

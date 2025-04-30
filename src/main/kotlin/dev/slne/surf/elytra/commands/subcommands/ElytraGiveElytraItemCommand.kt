@@ -2,16 +2,16 @@ package dev.slne.surf.elytra.commands.subcommands
 
 import dev.jorel.commandapi.CommandAPICommand
 import dev.jorel.commandapi.kotlindsl.*
-import dev.slne.surf.elytra.recipes.items.MobItemDrop
+import dev.slne.surf.elytra.recipes.items.ElytraItems
 import dev.slne.surf.elytra.utils.ElytraPermissionRegistry
 import dev.slne.surf.surfapi.core.api.messages.adventure.sendText
 import org.bukkit.entity.Player
 
-fun CommandAPICommand.elytraGiveMobDropCommand() = subcommand("give-mob-drop") {
+fun CommandAPICommand.elytraGiveElytraItemCommand() = subcommand("give-elytra-item") {
     withPermission(ElytraPermissionRegistry.ELYTRA_COMMAND_GIVE)
 
     entitySelectorArgumentManyPlayers("targets", allowEmpty = false)
-    multiLiteralArgument("item", *MobItemDrop.entries.map { it.name }.toTypedArray())
+    multiLiteralArgument("item", *ElytraItems.entries.map { it.name }.toTypedArray())
     integerArgument("amount", 1, 64)
 
     playerExecutor { player, args ->
@@ -20,7 +20,7 @@ fun CommandAPICommand.elytraGiveMobDropCommand() = subcommand("give-mob-drop") {
         val amount: Int by args
 
         val itemDrop =
-            MobItemDrop.entries.find { it.name == item } ?: return@playerExecutor player.sendText {
+            ElytraItems.entries.find { it.name == item } ?: return@playerExecutor player.sendText {
                 appendPrefix()
 
                 error("Item $item nicht gefunden.")

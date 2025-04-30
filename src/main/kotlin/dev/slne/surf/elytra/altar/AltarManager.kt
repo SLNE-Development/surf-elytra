@@ -72,7 +72,7 @@ object AltarManager {
         pluginManager.registerEvents(BrewingStandClickListener, plugin)
     }
 
-    private fun initBrewingStand() {
+    fun initBrewingStand() {
         val altarNorthLocation = altarSouthPosition.toLocation(altarWorld)
 
         if (altarNorthLocation.block.type !== Material.BREWING_STAND) {
