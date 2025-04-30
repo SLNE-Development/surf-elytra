@@ -51,9 +51,9 @@ val ascendedWingCoreRecipe =
 val glacialBindingRecipe =
     ShapedRecipe(key("glacial_binding"), glacialBindingItemStack).apply {
         shape(
-            "PSP",
-            "SIS",
-            "PSP"
+            "PIP",
+            "ISI",
+            "PIP"
         )
 
         setIngredient('P', ItemStack(Material.PACKED_ICE))
