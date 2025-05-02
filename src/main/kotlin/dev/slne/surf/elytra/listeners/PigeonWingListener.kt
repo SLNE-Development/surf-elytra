@@ -9,6 +9,7 @@ import org.bukkit.event.inventory.PrepareAnvilEvent
 import org.bukkit.event.inventory.PrepareGrindstoneEvent
 import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.event.player.PlayerItemMendEvent
+import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
 object PigeonWingListener : Listener {
@@ -87,22 +88,17 @@ object PigeonWingListener : Listener {
         val firstItem = event.inventory.upperItem
         val secondItem = event.inventory.lowerItem
 
-        if (firstItem == null || secondItem == null) {
-            return
+        if ((isBrokenPigeonWings(firstItem)) ||
+            (isBrokenPigeonWings(secondItem))) {
+            event.result = null
         }
-
-        if (!(firstItem.persistentDataContainer.has(
-                brokenPigeonWingsKey,
-                PersistentDataType.BOOLEAN
-            ) || secondItem.persistentDataContainer.has(
-                brokenPigeonWingsKey,
-                PersistentDataType.BOOLEAN
-            ))
-        ) {
-            return
-        }
-
-        event.result = null
+    }
+    private fun isBrokenPigeonWings(item: ItemStack?): Boolean {
+        return item?.type == Material.ELYTRA &&
+                item.persistentDataContainer.has(
+                    brokenPigeonWingsKey,
+                    PersistentDataType.BOOLEAN
+                ) == true
     }
 
     @EventHandler
