@@ -114,7 +114,7 @@ enum class AltarItemFrame(
 
     fun checkState() = !itemFrame.item.type.isAir
 
-    fun isItemStackAllowed(itemStack: ItemStack) = itemStack.type == allowedItemStack.type
+    fun isItemStackAllowed(itemStack: ItemStack) = itemStack.isSimilar(allowedItemStack)
 
     abstract fun animate(currentFrame: Int): Boolean
 
