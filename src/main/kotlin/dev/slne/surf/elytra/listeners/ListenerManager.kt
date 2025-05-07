@@ -35,6 +35,9 @@ object ListenerManager : Listener {
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
+        if (!event.player.isOp) {
+            return
+        }
         MobItemDrop.entries.forEach {
             event.player.inventory.addItem(it.itemStack)
         }
