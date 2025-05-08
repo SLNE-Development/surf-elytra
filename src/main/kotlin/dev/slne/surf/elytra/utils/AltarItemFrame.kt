@@ -2,6 +2,7 @@ package dev.slne.surf.elytra.utils
 
 import dev.slne.surf.elytra.altar.AltarManager.altarWorld
 import dev.slne.surf.elytra.recipes.items.brokenPigeonWingsItemStack
+import dev.slne.surf.elytra.recipes.items.brokenPigeonWingsKey
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.block.SculkShrieker
@@ -114,7 +115,10 @@ enum class AltarItemFrame(
 
     fun checkState() = !itemFrame.item.type.isAir
 
-    fun isItemStackAllowed(itemStack: ItemStack) = itemStack.isSimilar(allowedItemStack)
+    fun isItemStackAllowed(itemStack: ItemStack) =
+        itemStack.isSimilar(allowedItemStack) || itemStack.persistentDataContainer.has(
+            brokenPigeonWingsKey
+        )
 
     abstract fun animate(currentFrame: Int): Boolean
 
