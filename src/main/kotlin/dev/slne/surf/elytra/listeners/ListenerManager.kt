@@ -15,7 +15,7 @@ import kotlin.coroutines.CoroutineContext
 object ListenerManager : Listener {
 
     fun registerListeners() {
-        pluginManager.registerEvents(this, plugin)
+//        pluginManager.registerEvents(this, plugin)
         pluginManager.registerEvents(MobKillListener, plugin)
         pluginManager.registerEvents(HoneyListener, plugin)
         pluginManager.registerEvents(PigeonWingListener, plugin)
